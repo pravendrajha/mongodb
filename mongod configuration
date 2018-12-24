@@ -1,1 +1,33 @@
 mongod --port 27017 --dbpath data\db
+
+
+
+use test
+db.dropDatabase()
+use test
+ db.createUser({
+    "user": "prod-admin",
+     "pwd": "prod-admin",
+    "roles": [
+        {"role": "clusterAdmin", "db": "admin" },
+        {"role": "readAnyDatabase", "db": "admin" },
+   "readWrite"
+    ]},
+    { "w": "majority" , "wtimeout": 6000 }
+)
+
+
+mongo --username=prod-admin --password=prod-admin test
+
+db.createUser({
+    "user": "test-w",
+    "pwd": "test-w",
+    "roles": ["readWrite"]
+})
+
+
+
+mongo --username=test-w --password=test-w test
+
+
+
