@@ -1,0 +1,2 @@
+
+mongoimport  --host localhost --username test --password "test"  -d cdpaudit  -c covers --file C:\Users\test\Desktop\hadoop_poc\mongo_db\sample_covers.json
